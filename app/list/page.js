@@ -5,7 +5,7 @@ export default function List() {
       <div className="food">
         <h4>상품1 $40</h4>
       </div>
-      <div>
+      <div className="food">
         <h4>상품2 $40</h4>
       </div>
     </div>
