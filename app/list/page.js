@@ -3,27 +3,36 @@
 import { useState } from "react";
 
 export default function List() {
-  let 상품 = ["Tomatoes", "Pasta", "Coconut"];
-  let [num, changeNum] = useState(0);
+  let goods = ["Tomatoes", "Pasta", "Coconut"];
+  let [nums, changeNum] = useState([0, 0, 0]);
   return (
     <div>
       <h4 className="title">상품목록</h4>
-      {상품.map((element, index) => {
+      {goods.map((element, index) => {
         return (
           <div className="food" key={index}>
             <img src={`/food${index}.png`} className="food-img" alt="" />
             <h4>{element} $40</h4>
-            <span>{num}</span>
+            <span>{nums[index]}</span>
             <button
               onClick={() => {
-                changeNum(num + 1);
+                let copy = { ...nums };
+                copy[index]++;
+                changeNum(copy);
               }}
             >
               +
             </button>
             <button
               onClick={() => {
-                changeNum(num - 1);
+                let copy = { ...nums };
+                if (copy[index] == 0) {
+                  alert("0이하로 설정할 수 없습니다!");
+                  return;
+                }
+
+                copy[index]--;
+                changeNum(copy);
               }}
             >
               -
